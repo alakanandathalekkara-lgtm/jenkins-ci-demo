@@ -27,7 +27,9 @@ pipeline {
     }
     failure {
       echo "Build #${env.BUILD_NUMBER} FAILED"
-      // notification step is added once Slack or email is configured
+      mail to: 'alakanandathalekkara@gmail.com',
+           subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+           body: "Build #${env.BUILD_NUMBER} of ${env.JOB_NAME} failed.\nDetails: ${env.BUILD_URL}console"
     }
   }
 }
